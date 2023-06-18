@@ -1,4 +1,4 @@
-const { libraryService } = require("../services");
+const { libraryService } = require("../services/index.services");
 
 const createLibrary = async (req, res) => {
   try {
