@@ -1,7 +1,7 @@
 const { bookProvider } = require("../providers/index.providers");
 
 
-const createBook = async (id, book) => {
+const createBook = async (book) => {
   return await bookProvider.createBook(book);
 };
 

@@ -1,11 +1,11 @@
 const { libraryProvider } = require("../providers/index.providers");
 
 
-const createLibrary = async (id, book) => {
+const createLibrary = async (library) => {
   return await libraryProvider.createLibrary(library);
 };
 
-const getLibrary = async (bookId) => {
+const getLibrary = async (libraryId) => {
   const library = await libraryProvider.getLibrary(libraryId);
   if (library) {
     // Lógica de negocio

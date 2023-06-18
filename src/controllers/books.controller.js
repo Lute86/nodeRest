@@ -11,7 +11,7 @@ const createBook = async (req, res) => {
 
 const getBook = async (req, res) => {
   try {
-    const book = await bookService.getBook(req.params.userId);
+    const book = await bookService.getBook(req.params.bookId);
     if (!book) {
       res.status(404).json({ action: "getBook", error: "Book Not Found" });
     } else {

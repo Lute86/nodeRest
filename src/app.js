@@ -16,15 +16,10 @@ app.use(loggingMdw);
 
 //=> Auth
 
-app.get("/user", (req, res) => {
-  console.log("User", req);
-  res.send("<h1>Hello World</h1>");
-});
-
 //Routes
 app.use('/user' , userRouter)
-app.use('/library', libraryRouter)
 app.use('/book', bookRouter)
+app.use('/library', libraryRouter)
 
 // Non-existent route
 app.use((req, res, next) => {
