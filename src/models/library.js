@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
-const { Books } = require("./index.models");
+const { Book } = require("./index.models");
 
 const Library = sequelize.define("Library", {
   id: {
@@ -22,7 +22,7 @@ const Library = sequelize.define("Library", {
   }
 });
 
-Library.hasMany(Books);
-Books.belongsTo(Library);
+// Library.hasMany(Book);
+// Book.belongsTo(Library);
 
 module.exports = Library;

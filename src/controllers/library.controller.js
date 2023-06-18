@@ -22,8 +22,6 @@ const getLibrary = async (req, res) => {
   }
 };
 
-const createBook = async (req, res) => {
-  
-};
 
-module.exports = { createLibrary, getLibrary, createBook };
+
+module.exports = { createLibrary, getLibrary };
