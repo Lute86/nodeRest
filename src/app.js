@@ -20,6 +20,8 @@ app.use(loggingMdw);
 app.use('/user' , userRouter)
 app.use('/book', bookRouter)
 app.use('/library', libraryRouter)
+app.use("/login", authRouter);
+
 
 // Non-existent route
 app.use((req, res, next) => {
