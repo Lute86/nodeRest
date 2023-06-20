@@ -14,4 +14,10 @@ const getLibrary = async (libraryId) => {
   return library;
 };
 
-module.exports = { createLibrary, getLibrary };
+const getAllLibraries = async () => {
+  const library = await libraryProvider.getAllLibraries();
+  if(library.length<1) console.log("No hay librerias")
+  return library;
+};
+
+module.exports = { createLibrary, getLibrary, getAllLibraries };

@@ -20,4 +20,14 @@ const getLibrary = async (libraryId) => {
   }
 };
 
-module.exports = { createLibrary, getLibrary };
+const getAllLibraries = async () => {
+  try {
+    const library = await Library.findAll();
+    return library;
+  } catch (err) {
+    console.error("Error when fetching all Libraries", err);
+    throw err;
+  }
+};
+
+module.exports = { createLibrary, getLibrary, getAllLibraries };

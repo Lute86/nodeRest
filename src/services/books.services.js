@@ -14,4 +14,10 @@ const getBook = async (bookId) => {
   return book;
 };
 
-module.exports = { createBook, getBook };
+const getAllBooks = async () => {
+  const books = await bookProvider.getAllBooks();
+  if(books.length<1) console.log("No hay libros")
+  return books;
+};
+
+module.exports = { createBook, getBook, getAllBooks };

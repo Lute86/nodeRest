@@ -13,8 +13,6 @@ const createBook = async (book) => {
 const getBook = async (bookId) => {
   try {
     const book = await Books.findByPk(bookId, { include: { all: true } });
-    console.log(book)
-    console.log(bookId)
     return book;
   } catch (err) {
     console.error("Error when fetching Book", err);
@@ -22,4 +20,14 @@ const getBook = async (bookId) => {
   }
 };
 
-module.exports = { createBook, getBook };
+const getAllBooks = async () => {
+  try {
+    const books = await Books.findAll();
+    return books;
+  } catch (err) {
+    console.error("Error when fetching all Books", err);
+    throw err;
+  }
+};
+
+module.exports = { createBook, getBook, getAllBooks };

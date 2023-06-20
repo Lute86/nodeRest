@@ -22,5 +22,17 @@ const getBook = async (req, res) => {
   }
 };
 
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await bookService.getAllBooks();
+    if (!books) {
+      res.status(404).json({ action: "getAllBooks", error: "Books Not Found" });
+    } else {
+      res.json(books);
+    }
+  } catch (err) {
+    res.status(500).json({ action: "getAllBooks", error: err.message });
+  }
+};
 
-module.exports = { createBook, getBook };
+module.exports = { createBook, getBook, getAllBooks };
