@@ -20,4 +20,10 @@ const getAllBooks = async () => {
   return books;
 };
 
-module.exports = { createBook, getBook, getAllBooks };
+const updateBook = async (bookId, updates) => {
+  const book = await bookProvider.updateBook(bookId, updates);
+  return book;
+}
+
+
+module.exports = { createBook, getBook, getAllBooks, updateBook };

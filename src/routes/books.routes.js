@@ -10,10 +10,8 @@ router.post("/", userIsAdminMDW, bookController.createBook);
 router.get("/:bookId", jwtValidMDW, bookController.getBook);
 router.get("/", jwtValidMDW, bookController.getAllBooks);
 
-// router.get('/', (req, res)=> {
-//   console.log('Book', req.user)
-//   console.log()
-//   res.send("<h1>Book</h1>")
-// });
+router.put("/:bookId", userIsAdminMDW, bookController.updateBook);
+
+//router.delete("/", userIsAdminMDW, bookController.deleteBook)
 
 module.exports = router;

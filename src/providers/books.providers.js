@@ -30,4 +30,18 @@ const getAllBooks = async () => {
   }
 };
 
-module.exports = { createBook, getBook, getAllBooks };
+const updateBook = async (bookId, updates) => {
+  try {
+    const book = await Books.findByPk(bookId);
+    if (!book) {
+      throw new Error("Book not found");
+    }
+    const updatedBook = await book.update(updates);
+    return updatedBook;
+  } catch (err) {
+    console.error("Error when updating Book", err);
+    throw err;
+  }
+};
+
+module.exports = { createBook, getBook, getAllBooks, updateBook };
