@@ -1,9 +1,18 @@
 const Books  = require("../models/books");
+const Library  = require("../models/library");
 const { Op } = require("sequelize");
 
 
 const createBook = async (book) => {
   try {
+    //Check if the library exists
+    if(book.library) {
+      const library = await Library.findByPk(book.library);
+      if (!library) {
+        throw new Error("Trying to insert book into an invalid library id");
+      }
+    }
+
     const newBook = await Books.create(book);
     return newBook;
   } catch (err) {
