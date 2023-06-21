@@ -35,5 +35,44 @@ const getAllLibraries = async (req, res) => {
   }
 };
 
+const updateLibrary = async (req, res) => {
+  try {
+    const library = await libraryService.updateLibrary(req.params.libraryId, req.body);
+    if (!library) {
+      res.status(404).json({ action: "updateLibrary", error: "Library Not Found" });
+    } else {
+      res.json(library);
+    }
+  } catch (err) {
+    res.status(500).json({ action: "updateLibrary", error: err.message });
+  }
+}
 
-module.exports = { createLibrary, getLibrary, getAllLibraries };
+const deleteLibrary = async (req, res) => {
+  try {
+    const library = await libraryService.deleteLibrary(req.params.libraryId);
+    if (!library) {
+      res.status(404).json({ action: "deleteLibrary", error: "Library Not Found" });
+    } else {
+      res.json(library);
+    }
+  } catch (err) {
+    res.status(500).json({ action: "deleteLibrary", error: err.message });
+  }
+}
+
+const getAllDeletedLibraries = async (req, res) => {
+  try {
+    const library = await libraryService.getAllDeletedLibraries();
+    if (!library) {
+      res.status(404).json({ action: "getAllDeletedLibraries", error: "Libraries Not Found" });
+    } else {
+      res.json(library);
+    }
+  } catch (err) {
+    res.status(500).json({ action: "getAllDeletedLibraries", error: err.message });
+  }
+};
+
+
+module.exports = { createLibrary, getLibrary, getAllLibraries, updateLibrary, deleteLibrary, getAllDeletedLibraries };

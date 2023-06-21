@@ -20,6 +20,10 @@ const Library = sequelize.define("Library", {
     type: DataTypes.STRING,
     allowNull: false,
   }
+},{
+  paranoid: true, // Enable soft deletes
+  timestamps: true, // Include timestamps (createdAt, updatedAt, deletedAt)
+  deletedAt: "deletedAt", // Use "deletedAt" as the name for the deletion timestamp column
 });
 
 // Library.hasMany(Book);

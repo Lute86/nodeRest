@@ -16,7 +16,7 @@ const getBook = async (bookId) => {
 
 const getAllBooks = async () => {
   const books = await bookProvider.getAllBooks();
-  if(books.length<1) console.log("No hay libros")
+  if(books.length<1) console.log("No books found")
   return books;
 };
 
@@ -25,5 +25,16 @@ const updateBook = async (bookId, updates) => {
   return book;
 }
 
+const deleteBook = async (bookId) => {
+  const book = await bookProvider.deleteBook(bookId);
+  return book;
+}
 
-module.exports = { createBook, getBook, getAllBooks, updateBook };
+const getAllDeletedBooks = async () => {
+  const books = await bookProvider.getAllDeletedBooks();
+  if(books.length<1) console.log("No books found")
+  return books;
+}; 
+
+
+module.exports = { createBook, getBook, getAllBooks, updateBook, deleteBook, getAllDeletedBooks };

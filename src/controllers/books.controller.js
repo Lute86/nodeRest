@@ -48,4 +48,30 @@ const updateBook = async (req, res) => {
   }
 }
 
-module.exports = { createBook, getBook, getAllBooks, updateBook };
+const deleteBook = async (req, res) => {
+  try {
+    const book = await bookService.deleteBook(req.params.bookId);
+    if (!book) {
+      res.status(404).json({ action: "deleteBook", error: "Book Not Found" });
+    } else {
+      res.json(book);
+    }
+  } catch (err) {
+    res.status(500).json({ action: "deleteBook", error: err.message });
+  }
+}
+
+const getAllDeletedBooks = async (req, res) => {
+  try {
+    const books = await bookService.getAllDeletedBooks();
+    if (!books) {
+      res.status(404).json({ action: "getAllDeletedBooks", error: "Books Not Found" });
+    } else {
+      res.json(books);
+    }
+  } catch (err) {
+    res.status(500).json({ action: "getAllDeletedBooks", error: err.message });
+  }
+};
+
+module.exports = { createBook, getBook, getAllBooks, updateBook, deleteBook, getAllDeletedBooks };

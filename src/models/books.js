@@ -28,6 +28,11 @@ const Book = sequelize.define("Books", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+},
+{
+  paranoid: true, // Enable soft deletes
+  timestamps: true, // Include timestamps (createdAt, updatedAt, deletedAt)
+  deletedAt: "deletedAt", // Use "deletedAt" as the name for the deletion timestamp column
 });
 
 

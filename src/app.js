@@ -14,7 +14,6 @@ app.use(express.json())
 
 app.use(loggingMdw);
 
-//=> Auth
 
 //Routes
 app.use('/user' , userRouter)
