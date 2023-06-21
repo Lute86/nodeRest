@@ -13,7 +13,7 @@ const createBook = async (book) => {
       }
     }
 
-    const newBook = await Books.create(book);
+    const newBook = await Books.create({ ...book, LibraryId: book.library || null });
     return newBook;
   } catch (err) {
     console.error("Error when creating Book", err);

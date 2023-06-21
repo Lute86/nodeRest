@@ -1,3 +1,4 @@
+const { bookService } = require("../services/index.services");
 const libraryService = require("../services/library.services");
 
 const createLibrary = async (req, res) => {
@@ -74,5 +75,15 @@ const getAllDeletedLibraries = async (req, res) => {
   }
 };
 
+const createBook = async (req, res) => {
+  try {
+    const bookData = { ...req.body, library: req.params.libraryId };
+    const book = await bookService.createBook(bookData);
+    res.json(book);
+  } catch (err) {
+    res.status(500).json({ action: "createBook", error: err.message });
+  }
+};
 
-module.exports = { createLibrary, getLibrary, getAllLibraries, updateLibrary, deleteLibrary, getAllDeletedLibraries };
+
+module.exports = { createLibrary, getLibrary, getAllLibraries, updateLibrary, deleteLibrary, getAllDeletedLibraries, createBook };

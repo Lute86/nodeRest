@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
-//const { Book } = require("./index.models");
+const Book = require("./books");
 
 const Library = sequelize.define("Library", {
   id: {
@@ -26,7 +26,7 @@ const Library = sequelize.define("Library", {
   deletedAt: "deletedAt", // Use "deletedAt" as the name for the deletion timestamp column
 });
 
-// Library.hasMany(Book);
-// Book.belongsTo(Library);
+Library.hasMany(Book);
+Book.belongsTo(Library);
 
 module.exports = Library;
