@@ -1,15 +1,53 @@
-Node.js => MVC (Model-View-Controller) pattern architecture. 
+Node.js RestApi  => MVC (Model-View-Controller) pattern architecture. 
 
+Basic tests
+/login requires
+{
+  "user": "",
+  "pass": ""
+}
 
+/user
+{
+    "firstName": "Pepe",
+    "lastName": "Gil",
+    "email": "pepe@gmail.com",
+    "password": 123
+}
+
+/library
+{
+  "name": "Ateneo",
+  "location": "CABA",
+  "phone": "457392718"
+}
+
+/book
+{
+  "isbn": 14232,
+  "title": "Siddharta",
+  "author": "Herman Hesse",
+  "year": 1984,
+  "library": 1
+}
+isbn cant be duplicated for different titles
+
+Theory
 Routes: 
-  define the endpoints of the app and map them to specific controllers. 
+  /login => auth 
+  /user => users
+  /library => library
+  /book => books
+  define the endpoints of the app and connects them to specific controllers.
 
 
 Middleware: 
   often used for tasks such as authentication, logging, error handling, parsing request bodies, or any other custom processing that needs to be done before or after the main request handling.
+  Here being used for logging, auth, and validating body data for creating, updating.
 
 Models:
-  represent the data structures or business logic of your application. They define how data should be structured, validated, and manipulated. Models often interact with a database or any other persistence layer to retrieve or update data. They encapsulate the application's data-related functionality.
+  represent the data structures or business logic of your application. They define how data should be structured, validated, and manipulated. Models often interact with a database to retrieve or update data. They encapsulate the application's data-related functionality.
+
 
 Controllers:
   handle the logic and flow of the application. They receive requests from the client, interact with models to fetch or update data, and determine the appropriate response to send back to the client. Controllers act as the intermediary between the incoming requests and the models or services responsible for processing them.
@@ -22,33 +60,3 @@ Providers:
 
 
 
-
-First layout
-
-- models/
-  - indexModels.js
-  - libraryModel.js
-  - bookModel.js
-  - userModel.js
-- controllers/
-  - indexControllers.js
-  - libraryController.js
-  - bookController.js
-  - userController.js
-- routes/
-  - indexRoutes.js
-  - libraryRoutes.js
-  - bookRoutes.js
-  - userRoutes.js
-- services/
-  - indexServices.js
-  - libraryService.js
-  - bookService.js
-  - userService.js
-- providers/
-  - indexProvider.js
-- middleware/
-  -authMdw.js
-- config/
-  - dbConfig.js
-- app.js
