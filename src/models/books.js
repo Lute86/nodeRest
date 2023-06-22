@@ -11,6 +11,9 @@ const Book = sequelize.define("Books", {
     /*Compartido por todos los libros iguales*/
     type: DataTypes.INTEGER,
     allowNull: false,
+    validate:{
+      isInt:true
+    }
   },
   title: {
     type: DataTypes.STRING,
@@ -27,6 +30,9 @@ const Book = sequelize.define("Books", {
   library: {
     type: DataTypes.INTEGER,
     allowNull: true,
+    validate:{
+      isInt:true
+    }
   },
 },
 {

@@ -9,7 +9,7 @@ const validateTypesMdw = require('../middleware/validateTypes.mdw');
 
 //Auth required
 router.get("/deleted", userIsAdminMDW, bookController.getAllDeletedBooks)
-router.post("/", userIsAdminMDW, bookController.createBook);
+router.post("/", [userIsAdminMDW, validateTypesMdw("books")], bookController.createBook);
 router.put("/:bookId", [userIsAdminMDW, validateTypesMdw("books")], bookController.updateBook);
 router.delete("/:bookId", userIsAdminMDW, bookController.deleteBook)
 //Regular user required
