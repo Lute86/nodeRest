@@ -11,7 +11,7 @@ Basic tests
 {
     "firstName": "Pepe",
     "lastName": "Gil",
-    "email": "pepe@gmail.com",
+    "email": "pepe@mail.com",
     "password": 123
 }
 
