@@ -26,7 +26,7 @@ const Library = sequelize.define("Library", {
   deletedAt: "deletedAt", // Use "deletedAt" as the name for the deletion timestamp column
 });
 
-Library.hasMany(Book);
+Library.hasMany(Book, {onDelete:"CASCADE", foreignKey:"library"});
 Book.belongsTo(Library);
 
 module.exports = Library;

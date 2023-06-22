@@ -13,7 +13,7 @@ const createBook = async (book) => {
       }
     }
 
-    const newBook = await Books.create({ ...book, LibraryId: book.library || null });
+    const newBook = await Books.create({ ...book, library: book.library || null });
     return newBook;
   } catch (err) {
     console.error("Error when creating Book", err);
@@ -43,10 +43,19 @@ const getAllBooks = async () => {
 
 const updateBook = async (bookId, updates) => {
   try {
+    //Find book
     const book = await Books.findByPk(bookId);
     if (!book) {
       throw new Error("Book not found");
     }
+    //If library is changed, check existance/null first
+    if(updates.library) {
+      const library = await Library.findByPk(updates.library);
+      if (!library) {
+        throw new Error("Trying to insert book into an invalid library id");
+      }
+    }
+    //Update book
     const updatedBook = await book.update(updates);
     return updatedBook;
   } catch (err) {

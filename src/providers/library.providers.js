@@ -1,4 +1,4 @@
-const { Library } = require("../models/index.models");
+const { Library, Book } = require("../models/index.models");
 const { Op } = require("sequelize");
 
 const createLibrary = async (library) => {
@@ -23,7 +23,7 @@ const getLibrary = async (libraryId) => {
 
 const getAllLibraries = async () => {
   try {
-    const library = await Library.findAll();
+    const library = await Library.findAll({ include: [Book] });
     return library;
   } catch (err) {
     console.error("Error when fetching all Libraries", err);
@@ -52,6 +52,12 @@ const deleteLibrary = async (libraryId) => {
     if (!library) {
       throw new Error("Library not found");
     }
+    // Find and delete all associated books
+    const books = await Book.findAll({ where: { library: libraryId } });
+    if (books.length > 0) {
+      await Promise.all(books.map((book) => book.destroy()));
+    }
+    //Delete library
     await library.destroy();
     return library;
   } catch (err) {
