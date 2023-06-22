@@ -1,5 +1,7 @@
 Node.js RestApi  => MVC (Model-View-Controller) pattern architecture. 
 
+To modify, create or delete admin login required. To see books or libraries, simple user or admin login.
+
 Basic tests
 /login requires
 {
