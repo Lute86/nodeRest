@@ -1,38 +1,90 @@
 Node.js RestApi  => MVC (Model-View-Controller) pattern architecture. 
 
-To modify, create or delete admin login required. To see books or libraries, simple user or admin login.
+ENDPOINTS 
 
-Basic tests
-/login requires
+------------------
+/login
+------------------
+POST / => generates bearer token (admin token or regular user token)
 {
   "user": "",
   "pass": ""
 }
 
+------------------
 /user
+------------------
+GET
+/ => returns an h1
+/:userId  => returns user with id = userId
+
+POST / => creates user
 {
     "firstName": "Pepe",
     "lastName": "Gil",
-    "email": "pepe@mail.com",
+    "email": "pepe@gmail.com",
     "password": 123
 }
 
+------------------------
+/book
+------------------------
+
+=> requires login(simple user or admin) 
+GET 
+/ => returns all books
+/:bookId => return book with id = bookId
+
+=> requires admin auth
+GET /deleted => returns deleted books
+
+POST / => creates book
+{
+  "isbn": 14232,
+  "title": "Siddharta",
+  "author": "Herman Hesse",
+  "year": "1984",
+  "library": 1
+}
+isbn cant be duplicated for different book titles
+
+PUT /:bookId => updates the book. At least one property needed
+
+DELETE /:bookId => deletes book of id = bookId
+
+----------------------
 /library
+----------------------
+=> requires login(simple user or admin)
+
+GET 
+/ => returns all libraries
+/:libraryId => return library with id = libraryId
+
+=> requires admin auth
+
+GET /deleted => returns deleted libraries
+
+POST /:libraryId/book => creates book if libraryId exists
+{
+  "isbn": 14232,
+  "title": "Siddharta",
+  "author": "Herman Hesse",
+  "year": "1984",
+}
+isbn cant be duplicated for different book titles. Library automatically filled/changed for current libraryId when creating from a library
+
+POST / => creates library
 {
   "name": "Ateneo",
   "location": "CABA",
   "phone": "457392718"
 }
 
-/book
-{
-  "isbn": 14232,
-  "title": "Siddharta",
-  "author": "Herman Hesse",
-  "year": 1984,
-  "library": 1
-}
-isbn cant be duplicated for different titles
+PUT /:libraryId => updates the library. At least one property needed
+
+DELETE /:bookId => deletes library of id = libraryId
+
 
 Theory
 Routes: 
@@ -40,7 +92,7 @@ Routes:
   /user => users
   /library => library
   /book => books
-  define the endpoints of the app and connects them to specific controllers.
+  the routes define the endpoints of the app and connects them to specific controllers.
 
 
 Middleware: 
@@ -59,6 +111,9 @@ Services:
 
 Providers:
   responsible for managing external services, libraries, or dependencies. They can handle tasks like connecting to a database, setting up authentication mechanisms, or configuring external APIs. Providers act as a bridge between your application and the external services it relies on.
+
+
+
 
 
 
