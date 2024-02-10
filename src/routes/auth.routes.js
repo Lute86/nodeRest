@@ -5,6 +5,41 @@ const { userService } = require("../services/index.services");
 
 const { SERVER_SECRET } = require("../middleware/auth.mdw");
 
+
+/** POST Methods */
+    /**
+     * @openapi
+     * '/login':
+     *  post:
+     *     tags:
+     *     - Auth Controller
+     *     summary: Login
+     *     requestBody:
+     *      required: true
+     *      content:
+     *        application/json:
+     *           schema:
+     *            type: object
+     *            required:
+     *              - user
+     *              - pass
+     *            properties:
+     *              user:
+     *                type: string
+     *                default: johndoe 
+     *              passw:
+     *                type: string
+     *                default: johnDoe20!@
+     *     responses:
+     *      200:
+     *        description: Success
+     *      409:
+     *        description: Conflict
+     *      404:
+     *        description: Not Found
+     *      500:
+     *        description: Server Error
+     */
 router.post("/", async (req, res) => {
   const { user, pass } = req.body;
 
