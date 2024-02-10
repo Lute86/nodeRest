@@ -1,4 +1,4 @@
-Node.js RestApi  => MVC (Model-View-Controller) pattern architecture. 
+Node.js => MVC (Model-View-Controller) pattern architecture. 
 
 ENDPOINTS 
 
@@ -88,11 +88,7 @@ DELETE /:bookId => deletes library of id = libraryId
 
 Theory
 Routes: 
-  /login => auth 
-  /user => users
-  /library => library
-  /book => books
-  the routes define the endpoints of the app and connects them to specific controllers.
+  define the endpoints of the app and map them to specific controllers. 
 
 
 Middleware: 
@@ -115,5 +111,32 @@ Providers:
 
 
 
+First layout
 
-
+- models/
+  - indexModels.js
+  - libraryModel.js
+  - bookModel.js
+  - userModel.js
+- controllers/
+  - indexControllers.js
+  - libraryController.js
+  - bookController.js
+  - userController.js
+- routes/
+  - indexRoutes.js
+  - libraryRoutes.js
+  - bookRoutes.js
+  - userRoutes.js
+- services/
+  - indexServices.js
+  - libraryService.js
+  - bookService.js
+  - userService.js
+- providers/
+  - indexProvider.js
+- middleware/
+  -authMdw.js
+- config/
+  - dbConfig.js
+- app.js
